@@ -11,6 +11,8 @@ overlays/
 build/
 bin/
 *.iml
-
 *.log.gz
 *.log
+ansible/roles/City-of-Bloomington.*
+ansible/*.retry
+

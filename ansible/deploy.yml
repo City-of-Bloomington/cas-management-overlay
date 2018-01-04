@@ -1,0 +1,27 @@
+---
+- hosts: cas
+  become: yes
+  roles:
+    - City-of-Bloomington.tomcat
+  tasks:
+    - name: "Update apache configuration"
+      template:
+        src: cas-management.conf
+        dest: /etc/apache2/sites-enabled/conf.d/cas-management.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: apache_restart
+
+    - name: "Configure CAS Management"
+      template:
+        src: "management.properties"
+        dest: "/etc/cas/config"
+      notify: "tomcat_restart"
+
+    - name: "Install CAS Management"
+      copy:
+        src: "../target/cas-management.war"
+        dest: "{{ cas_management_path }}.war"
+      notify: "tomcat_restart"
+...

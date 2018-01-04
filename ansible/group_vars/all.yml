@@ -1,0 +1,6 @@
+---
+cas_management_name: "cas-management"
+cas_management_path: "/srv/webapps/{{ cas_management_name }}"
+cas_management_uri: "/{{ cas_management_name }}"
+cas_management_url: "https://{{ ansible_host }}{{ cas_management_uri }}"
+...
